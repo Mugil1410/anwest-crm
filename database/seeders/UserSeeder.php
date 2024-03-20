@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
     {
         DB::table('users')->insert([
             'name' => 'admin', // Replace with the desired username
-            'password' => Hash::make('1234'), // Replace with the desired password
+           // 'password' => Hash::make('1234'), // Replace with the desired password
         ]);
     }
     
