@@ -2,6 +2,21 @@
 <html lang="en">
 
 @include('home.layouts.head')
+<head>
+    <style>
+        input{
+            width: 100%;
+            height: 50px;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
 
 <body class="services-details-page" data-bs-spy="scroll" data-bs-target="#navmenu">
 
@@ -30,8 +45,7 @@
         </div><!-- End Page Title -->
 
         <section class="application">
-            <div class="container-xxl">
-
+            <div class="container">
                 <form action="{{ route('store') }}" enctype="multipart/form-data" method="POST">
                     @csrf
                     <p>Applying for<span class="required">*</span></p>
@@ -41,96 +55,99 @@
                         <div class="item">
                             <p>Name<span class="required">*</span></p>
                             <input type="text" name="applicant_name" value = "{{ old('applicant_name') }}" />
-
                             @error('applicant_name')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="item">
+                            <p>Email<span class="required">*</span></p>
+                            <input type="email" name="applicant_email" value = "{{ old('applicant_email') }}" />
+                            @error('applicant_email')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div><br>
-
-                        <div class="contact-item">
-                            <div class="item">
-                                <p>Email<span class="required">*</span></p>
-                                <input type="email" name="applicant_email" value = "{{ old('applicant_email') }}" />
-                                @error('applicant_email')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                            </div><br>
-                            <div class="item">
-                                <p>Phone<span class="required">*</span></p>
-                                <input type="text" name="applicant_mobile" value = "{{ old('applicant_mobile') }}" />
-                                @error('applicant_mobile')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
+                        <div class="item">
+                            <p>Phone<span class="required">*</span></p>
+                            <input type="text" name="applicant_mobile" value = "{{ old('applicant_mobile') }}" />
+                            @error('applicant_mobile')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div><br>
+                    <div class="education-item">
+                        <div class="item">
+                            <p>Qualification<span class="required">*</span></p>
+                            <input type="text" name="qualification" value = "{{ old('qualification') }}" />
+                            @error('qualification')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div><br>
-
-                        <div class="education-item">
-                            <div class="item">
-                                <p>Qualification<span class="required">*</span></p>
-                                <input type="text" name="qualification" value = "{{ old('qualification') }}" />
-                                @error('qualification')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                            </div><br>
-                            <div class="item">
-                                <p>Skills<span class="required">*</span></p>
-                                <input type="text" placeholder="Field of study" name="skills"
-                                    value = "{{ old('skills') }}" />
-                                @error('skills')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
+                        <div class="item">
+                            <p>Skills<span class="required">*</span></p>
+                            <input type="text" placeholder="Field of study" name="skills"
+                                value = "{{ old('skills') }}" />
+                            @error('skills')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div><br>
+                    <div class="experience-item">
+                        <div class="item">
+                            <p>Year Of Experience<span class="required">*</span></p>
+                            <input type="text" name="exp_yr" value = "{{ old('exp_yr') }}" />
+                            @error('exp_yr')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div><br>
-
-                        <div class="experience-item">
-                            <div class="item">
-                                <p>Year Of Experience<span class="required">*</span></p>
-                                <input type="text" name="exp_yr" value = "{{ old('exp_yr') }}" />
-                                @error('exp_yr')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                            </div><br>
-                            <div class="item">
-                                <p>Designation<span class="required">*</span></p>
-                                <input type="text" placeholder="if no exp. just enter NA" name="designation"
-                                    value = "{{ old('designation') }}" />
-                                @error('designation')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                            </div><br>
-                            <div class="item">
-                                <p>Last Employer<span class="required">*</span></p>
-                                <input type="text" placeholder="if not applicable just enter NA" name="last_employer"
-                                    value = "{{ old('last_employer') }}" />
-                                @error('last_employer')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
+                        <div class="item">
+                            <p>Designation<span class="required">*</span></p>
+                            <input type="text" placeholder="if no exp. just enter NA" name="designation"
+                                value = "{{ old('designation') }}" />
+                            @error('designation')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div><br>
-
-                        <div class="position-item">
-                            <div class="item">
-                                <p>Joining Period<span class="required">*</span></p>
-                                <select name="peroid" class="dropdown-item>
-                                    <option value =""> Select Joining Period </option>
-                                    <option  value=">Immediate Joining" {{ old('period') == '>Immediate Joining"' ? 'selected' : '' }}>Immediate
-                                        Joining</option>
-                                    <option value=">7 days" {{ old('period') == '>7 day' ? 'selected' : '' }}>7 days</option>
-                                    <option value=">10 days" {{ old('period') == '>10 day' ? 'selected' : '' }}>10 day</option>
-                                    <option value=">15 days" {{ old('period') == '>15 days' ? 'selected' : '' }}>15 days
-                                    </option>
-                                    <option value=">30 days" {{ old('period') == '>30 days' ? 'selected' : '' }}>30 days
-                                    </option>
-                                    <option value=">>more than 30" {{ old('period') == '>more than 30' ? 'selected' : '' }}>more than 30
-                                        days</option>
-                                </select>
-                                @error('peroid')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div><br>
-
-
+                        <div class="item">
+                            <p>Last Employer<span class="required">*</span></p>
+                            <input type="text" placeholder="if not applicable just enter NA" name="last_employer"
+                                value = "{{ old('last_employer') }}" />
+                            @error('last_employer')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div><br>
+                    <div class="position-item">
+                        <div class="item">
+                            <p>Joining Period<span class="required">*</span></p>
+                            <select name="peroid"
+                                class="dropdown-item>
+                                <option value =""> Select
+                                Joining Period </option>
+                                <option value=">Immediate Joining"
+                                    {{ old('period') == '>Immediate Joining"' ? 'selected' : '' }}>Immediate
+                                    Joining</option>
+                                <option value=">7 days" {{ old('period') == '>7 day' ? 'selected' : '' }}>7 days
+                                </option>
+                                <option value=">10 days" {{ old('period') == '>10 day' ? 'selected' : '' }}>10 day
+                                </option>
+                                <option value=">15 days" {{ old('period') == '>15 days' ? 'selected' : '' }}>15
+                                    days
+                                </option>
+                                <option value=">30 days" {{ old('period') == '>30 days' ? 'selected' : '' }}>30
+                                    days
+                                </option>
+                                <option value=">>more than 30"
+                                    {{ old('period') == '>more than 30' ? 'selected' : '' }}>more than 30
+                                    days</option>
+                            </select>
+                            @error('peroid')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div><br>
+                    <div class="address-item">
                         <div class="item">
                             <p>Resume URL or Linked in url:</p>
                             <input type="text" name="profile_link" value={{ old('profile_link') }}"" />
@@ -149,22 +166,15 @@
                         <br>
                         <div class="btn-block">
                             <input type="submit" value="Apply for job" class="btn btn-primary" name="submit" />
-
                         </div>
+                    </div>
                 </form>
             </div>
-            </div>
-
         </section>
-
-        @include('home.layouts.footer');
-        @include('home.layouts.script');
-
     </main>
-
+    @include('home.layouts.footer');
+    @include('home.layouts.script');
     <!-- ======= Footer ======= -->
-
-
 </body>
 
 </html>

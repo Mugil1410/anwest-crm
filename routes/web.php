@@ -49,13 +49,14 @@ Route::get('/formsubmit',[SiteController::class,'applicationsubmission'])->name(
 //site subscriber route
 Route::post('/subscriber', [SiteController::class,'subscriber'])->name('subscriber');
 Route::get('/subscriberlist',[SiteController::class,'subscriberlist'])->name('subscriberlist');
+Route::post('/subscriberdelete',[SiteController::class,'subscriberdelete'])->name('subscriberdelete');
+
 
 Route::middleware('auth')->group(function () {
-
 //job routes
-
 Route::get('/dashboard', [UserController::class, 'index'])->name('home');
 Route::get('/job',[UserController::class, 'job'])->name('job');
+Route::post('/jobstatus',[UserController::class, 'jobstatus'])->name('jobstatus');
 Route::get('/add-job', [UserController::class,'addJob'])->name('Addjob');
 Route::post('/create-job', [UserController::class,'jobpost'])->name('jobpost');
 Route::get('/edit/{id}', [UserController::class,"edit"])->name('jobedit');
@@ -64,13 +65,17 @@ Route::get('/delete/{id}', [UserController::class,"delete"])->name('jobdelete');
 
 //applicants route
 Route::get('/applicants', [UserController::class,"applicants"])->name('applicants');
+Route::get('/applicants_profile/{id}', [UserController::class,"applicantsprofile"])->name('applicants.profile');
+Route::post('/update_status', [UserController::class,"updatestatus"])->name('applicants.updatestatus');
+Route::post('/applicants_delete',[UserController::class,'applicantdelete'])->name('applicantdelete');
 Route::post('/apllicants-filter', [UserController::class,"applicantsfilter"])->name('apllicants.filter');
-Route::get('/resume/{path}', [UserController::class,"resumeshow"])->name('resume.show');
+Route::get('/resume/{id}', [UserController::class,"resumeshow"])->name('resume.show');
 
 //query routes
 Route::get("/querylist", [UserController::class,"querylist"])->name('querylist');
 Route::post("/query", [UserController::class,"query"] )->name("query");
+Route::post("/querydelete", [UserController::class,"querydelete"] )->name("querydelete");
 
-Route::get('/logout',[UserController::class, 'logout'])->name('logout');
 });
+Route::get('/logout',[UserController::class, 'logout'])->name('logout');
 

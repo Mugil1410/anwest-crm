@@ -18,31 +18,35 @@
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <form class=""method="POST"
-                                        action="{{ route('jobupdate', ['id' => $job->id]) }}">
+                                    <form action="/update/{{ $job->id }}" method="POST">
                                         @csrf
-
                                         <input type="hidden" name="id" value={{ $job->id }} />
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label for="username">Title</label>
+                                                    <label for="title">Title</label>
                                                     <input type="text" class="form-control" 
-                                                        value={{ $job->title }} name="title">
+                                                        value="{{ $job->title }}" name="title" id="title">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label for="useremail">Company Posted</label>
+                                                    <label for="company">Company Posted</label>
                                                     <input type="text" class="form-control" 
-                                                        value={{ $job->company_posted }} name="company">
+                                                        value={{ $job->company_posted }} name="company" id="company">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label for="subject">Skills</label>
+                                                    <label for="useremail">No of openings</label>
+                                                    <input type="text" class="form-control" value={{ $job->no_of_opening }} name="openings">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="skills">Skills</label>
                                                     <input type="text" class="form-control" 
-                                                        value={{ $job->Skills }} name="skills">
+                                                        value="{{ $job->Skills }}" name="skills" id="skills">
                                                 </div>
                                             </div>
                                         </div>
@@ -93,7 +97,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-
                                             <div class="col-md-8">
                                                 <div class="form-group row">
                                                     <label class="col-sm-2 col-form-label text-right">Job Status</label>
@@ -108,28 +111,23 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-sm-12 text-right">
-                                                <button class="btn btn-primary px-5 py-2" type="submit">Update Job
-                                                    Post</button>
+                                                <input class="btn btn-primary px-5 py-2"  type="submit" value="update Job Post">
                                             </div>
                                         </div>
                                     </form>
                                 </div><!--end card-body-->
                             </div><!--end card-->
-
                         </div>
                     </div>
                 </div><!--end col-->
             </div><!--end row-->
             <!-- end page title end breadcrumb -->
-
             @include('auth.layouts.footer')
         </div>
         <!-- end page content -->
         @include('auth.layouts.script')
     </div>
     <!-- end page-wrapper -->
-
-
 </body>
 
 </html>

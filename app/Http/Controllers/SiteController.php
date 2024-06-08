@@ -108,7 +108,6 @@ class SiteController extends Controller
             'designation' => 'required',
             'last_employer' => 'required',
             'peroid'=>'required',
-            'profile_link' => 'required',
             'Resume_path' => 'required',
             
             
@@ -162,6 +161,16 @@ class SiteController extends Controller
     public function subscriberlist(){
         $subscriber=Subscriber::all();
         return view('auth.subscriber',compact('subscriber'));
+    }
+
+    public function subscriberdelete(Request $request){
+
+        $ids = $request->ids;
+        Subscriber::whereIn('id', $ids)->get()->each(function ($app) {
+        // Delete the database record
+        $app->delete();
+        });
+        return response()->json(['success' => 'Applicant(s) Deleted Successfully']);
     }
 
     

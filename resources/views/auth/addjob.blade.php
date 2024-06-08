@@ -159,8 +159,6 @@
         @include('auth.layouts.script')
     </div>
     <!-- end page-wrapper -->
-
-
 </body>
 
 </html>

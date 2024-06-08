@@ -18,7 +18,7 @@
      <nav class="navbar-custom">
         <ul class="list-unstyled topbar-nav float-right mb-0"> 
             <li class="dropdown">
-                <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="{{'logout'}}" role="button"
+                <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="{{route('logout')}}" role="button"
                     aria-haspopup="false" aria-expanded="false">
                     
                     <span class="btn btn-danger btn-lg">Logout</span>
@@ -64,21 +64,57 @@
                  <a href="{{route('applicants')}}"><i class="ti-briefcase"></i>
                      <span>Applicants</span>
                      <span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span>
-                     <span class="badge badge-pink float-right mr-2">New</span>
+                     @php
+                        use Carbon\Carbon;
+                        $jobs = App\Models\Application::all();
+                        $today = Carbon::today();
+                        $newJobs = $jobs->filter(function ($job) use ($today) {
+                            return $job->created_at->isSameDay($today);
+                        });
+                   @endphp
+                    @if ($newJobs->count() > 0)
+                    <span class="badge badge-pink float-right mr-2">New {{ $newJobs->count() }}</span>
+                    @endif
                  </a>
 
              </li>
 
              <li>
-                 <a href="{{route('subscriberlist')}}"><i class="ti-shopping-cart-full"></i><span>Subscribers</span><span
-                         class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                <a href="{{route('subscriberlist')}}"><i class="ti-shopping-cart-full"></i>
+                    <span>Subscribers</span>
+                    <span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span>
+                    @php
+                        $jobs = App\Models\Subscriber::all();
+                        $today = Carbon::today();
+                        $newJobs = $jobs->filter(function ($job) use ($today) {
+                            return $job->created_at->isSameDay($today);
+                        });
+                   @endphp
+                    @if ($newJobs->count() > 0)
+                    <span class="badge badge-pink float-right mr-2">New {{ $newJobs->count() }}</span>
+                    @endif
+                </a>
 
              </li>
 
              
              <li>
-                <a href="{{route('querylist')}}"><i class="ti-user"></i><span>Queries</span><span class="menu-arrow"><i
-                            class="mdi mdi-chevron-right"></i></span></a>
+                <a href="{{route('querylist')}}"><i class="ti-user"></i>
+                    <span>Queries</span>
+                    <span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span>
+                    @php
+                        
+                        $jobs = App\Models\Query::all();
+                        $today = Carbon::today();
+                        $newJobs = $jobs->filter(function ($job) use ($today) {
+                            return $job->created_at->isSameDay($today);
+                        });
+                   @endphp
+                    @if ($newJobs->count() > 0)
+                    <span class="badge badge-pink float-right mr-2">New {{ $newJobs->count() }}</span>
+                    @endif
+                    
+                </a>
 
             </li>
          </ul>

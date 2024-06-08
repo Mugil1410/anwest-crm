@@ -1,4 +1,5 @@
 <!-- jQuery  -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="{{ asset('backend/assets/js/jquery.min.js') }}"></script>
 <script src="{{ asset('backend/assets/js/bootstrap.bundle.min.') }}"></script>
 <script src="{{ asset('backend/assets/js/metisMenu.min.js') }}"></script>
